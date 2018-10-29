@@ -1,5 +1,5 @@
 # leetcode
-LeetCode OJ practice.
+https://leetcode.com/thisinnocence/
 Practice makes perfect :)
 
 # record
