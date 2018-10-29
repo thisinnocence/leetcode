@@ -1,9 +1,8 @@
-# leetcode
+# LeetCode
 
-## link
-https://leetcode.com/thisinnocence
-
+## Page
+https://leetcode.com/thisinnocence  
 Practice makes perfect :)
 
-## record
+## Record
 begin on 2018-10-1
