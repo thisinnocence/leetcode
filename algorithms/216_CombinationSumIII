@@ -1,0 +1,47 @@
+/**
+ * Return an array of arrays of size *returnSize.
+ * The sizes of the arrays are returned as *returnColumnSizes array.
+ * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().
+ */
+struct combine {
+    int num[9];
+    int pos;
+};
+
+struct combine g_comb;
+int **g_re;
+int g_re_num;
+
+void dfs(int k, int target, int start)
+{
+    if (g_comb.pos == k) {
+        if (target == 0) {
+            g_re[g_re_num] = malloc(sizeof(int) * k);
+            memcpy(g_re[g_re_num], g_comb.num, sizeof(int) * k);
+            g_re_num++;
+        }
+        return;
+    }
+
+    for (int i = start; i <= 9; i++) {
+        if (target < 0) continue;
+        g_comb.num[g_comb.pos++] = i;
+        dfs(k, target - i, i + 1);
+        g_comb.pos--;
+    }
+
+}
+
+int **combinationSum3(int k, int n, int *returnSize, int **returnColumnSizes)
+{
+    g_re_num = 0;
+    g_re = malloc(sizeof(int *) * 10240);
+    memset(&g_comb, 0, sizeof(g_comb));
+    dfs(k, n, 1);
+    *returnSize = g_re_num;
+    *returnColumnSizes = malloc(sizeof(int) * g_re_num);
+    for (int i = 0; i < g_re_num; i++) {
+        (*returnColumnSizes)[i] = k;
+    }
+    return g_re;
+}
